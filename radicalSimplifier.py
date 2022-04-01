@@ -1,5 +1,5 @@
 import math
-def simp(num,mult):
+def simp(num,mult,returnMode):
     print(num)
     numberToBeFactored = num
     multiplier = mult
@@ -10,7 +10,8 @@ def simp(num,mult):
     foundAnswer = False
     square = math.sqrt(numberToBeFactored)
     if int(square + 0.5)**2 == int(numberToBeFactored):
-        finalAnswer = ("answer is "+str(square * multiplier))
+        finalAnswerRadical = (square * multiplier)
+        finalAnswerIndex = 1
         initialIsSquare = True 
     while(lowRange<=highRange and not initialIsSquare):
       if lowRange == 0:
@@ -23,11 +24,11 @@ def simp(num,mult):
             print("square root found: "+str(square))
             print("answer is " + str(square*multiplier) + "-/"+str(lowRange) )
             if not (square == 1) and not foundAnswer:
-                finalAnswer = ("answer is " + str(square*multiplier) + "-/"+str(lowRange) )
+                finalAnswerIndex = int(square*multiplier)
+                finalAnswerRadical = lowRange
                 foundAnswer = True
       lowRange=lowRange+1
-    print("________________________")
-    print("")
-    print(finalAnswer)
-    print("________________________")
-    return(finalAnswer)
+    if returnMode == 0:
+        return(finalAnswerIndex)
+    if returnMode == 1:
+        return(finalAnswerRadical)
